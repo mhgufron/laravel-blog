@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Artikel;
 use App\Categori;
+use Storage;
 
 class ArtikelController extends Controller
 {
@@ -39,14 +40,18 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
-        $image=$request->file('gambar')->store('artikel');
+        $image = null;
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar')->store('artikel');
+        }
+
         Artikel::create([
             'judul'=>\Str::slug($request->judul),
             'body'=>$request->body,
             'gambar'=>$image,
             'categoris_id'=>$request->categoris_id
         ]);
-        return $request->all();
+        return redirect()->route('artikel.index');
 
     }
 
@@ -69,7 +74,9 @@ class ArtikelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categori = Categori::select('id', 'nama_kategori')->get();
+        $artikel = Artikel::find($id);
+        return view('artikel.edit', compact('categori','artikel'));
     }
 
     /**
@@ -81,7 +88,21 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $image = null;
+        $artikel = Artikel::find($id);
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar')->store('artikel');
+            Storage::delete($artikel->gambar);
+        } else {
+            $image = $artikel->gambar;
+        }
+        $artikel->update([
+            'judul'=>\Str::slug($request->judul),
+            'body'=>$request->body,
+            'gambar'=>$image,
+            'categoris_id'=>$request->categoris_id
+        ]);
+        return redirect()->route('artikel.index');
     }
 
     /**
@@ -92,6 +113,13 @@ class ArtikelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $artikel = Artikel::find($id);
+        if (!$artikel) {
+            return redirect()->back();
+        }
+
+        Storage::delete($artikel->gambar);
+        $artikel->delete();
+        return redirect()->route('artikel.index');
     }
 }

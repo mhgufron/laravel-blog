@@ -11,6 +11,6 @@ class CategorisTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Categori::class, 50)->create();
+        factory(App\Categori::class, 0)->create();
     }
 }

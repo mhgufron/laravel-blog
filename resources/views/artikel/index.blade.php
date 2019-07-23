@@ -30,15 +30,15 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->judul }}</td>
-                            <td><img src="https://cdn4.iconfinder.com/data/icons/user-avatar-flat-icons/512/User_Avatar-04-512.png" width="50px" height="50px" ></td>
+                            <td><img src="{{ asset('uploads/' . $item->gambar)}}" width="50px" height="50px" ></td>
                             <td>{{ $item->kategori->nama_kategori }}</td>
                             <td>
-                                <a href="#" class="btn btn-info">Edit</a>
+                                <a href="{{ route('artikel.edit',$item->id ) }}" class="btn btn-info">Edit</a>
 
                                 <a href="javascript:void(0)" onclick="$(this).find('form').submit()" class="btn btn-danger">
 
                                     <span class="fa fa-trash"></span>
-                                    <form action="#" method="POST">
+                                    <form action="{{ route('artikel.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                     </form>
