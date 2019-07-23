@@ -2,7 +2,9 @@
 @push('nav')
     <ul class="nav-menu nav navbar-nav">
         @foreach ($categori as $key => $value)
-            <li class="cat-{{ $loop->iteration }}"><a href="#">{{ $value->nama_kategori}}</a></li>
+            <li class="cat-{{ $loop->iteration }}">
+                <a href="{{ route('artikel.kategori', $value->slug) }}">{{ $value->nama_kategori}}</a>
+            </li>
         @endforeach
     </ul>
 @endpush
@@ -18,13 +20,17 @@
                 @foreach ($artikel as $key => $value)
                     <div class="col-md-6">
                         <div class="post post-thumb">
-                            <a class="post-img" href="#"><img src="{{ 'uploads/' . $value->gambar }}" alt="" width="300" height="300"></a>
+                            <a class="post-img" href="{{ route('artikel.detail', $value->judul) }}"><img src="{{ '/uploads/' . $value->gambar }}" alt="" width="300" height="300"></a>
                             <div class="post-body">
                                 <div class="post-meta">
                                     <a class="post-category cat-2" href="#">{{ $value->kategori->nama_kategori }}</a>
                                     <span class="post-date">{{ $value->created_at->diffForHumans()}}</span>
                                 </div>
-                                <h3 class="post-title"><a href="{{ $value->judul }}">{{ $value->judul }}</a></h3>
+                                <h3 class="post-title">
+                                    <a href="{{ route('artikel.detail', $value->judul) }}">
+                                        {{ $value->judul }}
+                                    </a>
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -54,17 +60,17 @@
                         @foreach ($artikelAll as $key => $value)
                             <div class="col-md-6">
                                 <div class="post">
-                                    <a class="post-img" href="#"><img src="{{ 'uploads/' . $value->gambar }}"
+                                    <a class="post-img" href="#"><img src="{{ '/uploads/' . $value->gambar }}"
                                     alt="" height="240"></a>
                                     <div class="post-body">
                                         <div class="post-meta">
-                                            <a class="post-category cat-2" href="#">
+                                            <a class="post-category cat-2" href="{{ route('artikel.detail', $value->judul) }}">
                                                 {{ $value->kategori->nama_kategori }}
                                             </a>
                                             <span class="post-date">{{ $value->created_at->diffForHumans() }}</span>
                                         </div>
                                         <h3 class="post-title">
-                                            <a href="#">
+                                            <a href="{{ route('artikel.detail', $value->judul) }}">
                                                 {{ $value->judul }}
                                             </a>
                                         </h3>
@@ -86,11 +92,11 @@
                         </div>
                         @foreach ($artikelMostRead as $key => $value)
                             <div class="post post-widget">
-                                <a class="post-img" href="blog-post.html"><img src="{{ 'uploads/' . $value->gambar }}" height="80"
+                                <a class="post-img" href="{{ route('artikel.detail', $value->judul) }}"><img src="{{ '/uploads/' . $value->gambar }}" height="80"
                                 alt=""></a>
                                 <div class="post-body">
                                     <h3 class="post-title">
-                                        <a href="blog-post.html">
+                                        <a href="{{ route('artikel.detail', $value->judul) }}">
                                             {{ $value->judul }}
                                         </a>
                                     </h3>
@@ -108,7 +114,7 @@
 
 @push('categories')
     <ul class="footer-links">
-        @foreach ($categories as $key => $value)
+        @foreach ($categori as $key => $value)
             <li><a href="#">{{ $value->nama_kategori}}</a></li>
         @endforeach
     </ul>

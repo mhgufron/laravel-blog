@@ -15,7 +15,7 @@ class Categori extends Model
         $this->attributes['slug'] = Str::slug($value, '-');
     }
 
-    public function getRuteKeyName()
+    public function getRouteKeyName()
     {
         return 'slug';
     }

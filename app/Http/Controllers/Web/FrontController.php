@@ -18,4 +18,23 @@ class FrontController extends Controller
 
         return view('front', compact('categori', 'artikel', 'artikelAll', 'artikelMostRead'));
     }
+
+    public function show(Artikel $artikel)
+    {
+        $artikel_detail = $artikel;
+        $categori = Categori::withCount('artikel')->get();
+        $artikelMostRead = Artikel::latest()->limit(3)->get();
+
+        return view('front.artikel_detail', compact('artikel_detail', 'categori','artikelMostRead'));
+    }
+
+    public function kategori(Categori $kategori)
+    {
+        $categori = Categori::all();
+        $artikel = Artikel::latest()->get()->random(2);
+        $artikelAll = $kategori->artikel()->get();
+        $artikelMostRead = Artikel::latest()->limit(3)->get();
+
+        return view('front', compact('categori', 'artikel', 'artikelAll', 'artikelMostRead'));
+    }
 }

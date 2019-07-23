@@ -17,6 +17,9 @@ Route::get('/auth', function () {
 
 Route::get('/', 'Web\FrontController@index');
 
+Route::get('/post/{artikel}', 'Web\FrontController@show')->name('artikel.detail');
+Route::get('/post-categori/{kategori}', 'Web\FrontController@kategori')->name('artikel.kategori');
+
 
 Auth::routes();
 
