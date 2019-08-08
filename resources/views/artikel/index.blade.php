@@ -30,7 +30,13 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->judul }}</td>
-                            <td><img src="{{ asset('uploads/' . $item->gambar)}}" width="50px" height="50px" ></td>
+                            <td>
+                                @if ($item->gambar == null)
+                                    Gambar Tidak ada
+                                @else
+                                    <img src="{{ asset('uploads/' . $item->gambar)}}" width="50px" height="50px" >
+                                @endif
+                            </td>
                             <td>{{ $item->kategori->nama_kategori }}</td>
                             <td>
                                 <a href="{{ route('artikel.edit',$item->id ) }}" class="btn btn-info">Edit</a>
