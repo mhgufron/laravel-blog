@@ -40,7 +40,7 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Tambah Artikel</button>
-                <a href="#" class="btn btn-danger">Kembali</a>
+                <a href="{{ route('artikel.index') }}" class="btn btn-danger">Kembali</a>
             </div>
 
         </form>
