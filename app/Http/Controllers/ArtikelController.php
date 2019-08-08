@@ -94,6 +94,12 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'judul'=>'required',
+            'body'=>'required',
+            'gambar'=>'mimes:jpeg,bmp,png,jpg',
+        ]);
+        
         $image = null;
         $artikel = Artikel::find($id);
         if ($request->hasFile('gambar')) {
