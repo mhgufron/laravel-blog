@@ -40,6 +40,12 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'judul'=>'required',
+            'body'=>'required',
+            'gambar'=>'mimes:jpeg,bmp,png,jpg',
+        ]);
+
         $image = null;
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar')->store('artikel');
