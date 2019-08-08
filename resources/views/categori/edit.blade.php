@@ -17,12 +17,22 @@
                     {{ csrf_field() }}
                     <div class="box-body">
                         <div class="form-group">
+                            @if ($errors->has('nama_kategori'))
+                                <div class="alert alert-danger">
+                                    <strong>{{ $errors->first('nama_kategori') }}</strong>
+                                </div>
+                            @endif
                             <label for="exampleInputEmail1">Nama Kategori</label>
                             <input type="text" class="form-control" name="nama_kategori" placeholder="Nama Kategori"  value="{{ $categori->nama_kategori }}">
                         </div>
                     </div>
                     <div class="box-body">
                         <div class="form-group">
+                            @if ($errors->has('nama_kategori'))
+                                <div class="alert alert-danger">
+                                    <strong>{{ $errors->first('nama_kategori') }}</strong>
+                                </div>
+                            @endif
                             <label for="exampleInputEmail1">Slug Kategori</label>
                             <input type="text" class="form-control" name="slug" placeholder="Slug Kategori"  value="{{ $categori->slug }}">
                         </div>

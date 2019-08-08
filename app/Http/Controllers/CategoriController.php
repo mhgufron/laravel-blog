@@ -65,6 +65,10 @@ class CategoriController extends Controller
      */
     public function edit($id)
     {
+        $this->validate($request,[
+            'nama_kategori'=>'required|min:5',
+            'slug'=>'required',
+        ]);
         $categori = Categori::find($id);
 
         return view('categori.edit', compact('categori'));
