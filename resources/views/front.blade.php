@@ -115,7 +115,7 @@
 @push('categories')
     <ul class="footer-links">
         @foreach ($categori as $key => $value)
-            <li><a href="#">{{ $value->nama_kategori}}</a></li>
+            <li><a href="{{ route('artikel.kategori', $value->slug) }}">{{ $value->nama_kategori}}</a></li>
         @endforeach
     </ul>
 @endpush
