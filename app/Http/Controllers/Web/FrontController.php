@@ -35,7 +35,13 @@ class FrontController extends Controller
         $artikel = Artikel::latest()->get()->random(2);
         $artikelAll = $kategori->artikel()->get();
         $artikelMostRead = Artikel::latest()->limit(3)->get();
-
+        
         return view('front', compact('categori', 'artikel', 'artikelAll', 'artikelMostRead'));
+    }
+    
+    public function about()
+    {
+        $categori = Categori::all();
+        return view('front.about', compact('categori'));
     }
 }

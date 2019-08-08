@@ -15,7 +15,9 @@ Route::get('/auth', function () {
     return view('auth.login');
 });
 
+// Front End
 Route::get('/', 'Web\FrontController@index');
+Route::get('/about', 'Web\FrontController@about')->name('about');
 
 Route::get('/post/{artikel}', 'Web\FrontController@show')->name('artikel.detail');
 Route::get('/post-categori/{kategori}', 'Web\FrontController@kategori')->name('artikel.kategori');
@@ -23,6 +25,8 @@ Route::get('/post-categori/{kategori}', 'Web\FrontController@kategori')->name('a
 
 Auth::routes();
 
+
+// Back End
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('categori', 'CategoriController');
