@@ -23,9 +23,10 @@ class FrontController extends Controller
     {
         $artikel_detail = $artikel;
         $categori = Categori::withCount('artikel')->get();
+        $artikelTerkait = Artikel::latest()->get()->random(3);
         $artikelMostRead = Artikel::latest()->limit(3)->get();
 
-        return view('front.artikel_detail', compact('artikel_detail', 'categori','artikelMostRead'));
+        return view('front.artikel_detail', compact('artikel_detail', 'categori','artikelMostRead','artikelTerkait'));
     }
 
     public function kategori(Categori $kategori)

@@ -20,7 +20,7 @@
                 @foreach ($artikel as $key => $value)
                     <div class="col-md-6">
                         <div class="post post-thumb">
-                            <a class="post-img" href="{{ route('artikel.detail', $value->judul) }}"><img src="{{ '/uploads/' . $value->gambar }}" alt="" width="300" height="300"></a>
+                            <a class="post-img" alt="" width="300" height="300"></a>
                             <div class="post-body">
                                 <div class="post-meta">
                                     <a class="post-category cat-2" href="#">{{ $value->kategori->nama_kategori }}</a>
