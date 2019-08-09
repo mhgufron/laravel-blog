@@ -23,9 +23,7 @@ Route::get('/contact', 'Web\FrontController@contact')->name('contact');
 Route::get('/post/{artikel}', 'Web\FrontController@show')->name('artikel.detail');
 Route::get('/post-categori/{kategori}', 'Web\FrontController@kategori')->name('artikel.kategori');
 
-
 Auth::routes();
-
 
 // Back End
 Route::group(['middleware' => 'auth'], function () {
