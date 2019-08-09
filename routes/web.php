@@ -28,7 +28,9 @@ Auth::routes();
 
 
 // Back End
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('categori', 'CategoriController');
-Route::resource('artikel', 'ArtikelController');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    
+    Route::resource('categori', 'CategoriController');
+    Route::resource('artikel', 'ArtikelController');
+});
