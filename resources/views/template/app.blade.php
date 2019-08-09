@@ -28,7 +28,7 @@
                 <div class="container">
                     <!-- logo -->
                     <div class="nav-logo">
-                        <a href="index.html" class="logo"><img src="{{asset('front/img/logo.png')}}" alt=""></a>
+                        <a href="/" class="logo"><img src="{{asset('front/img/logo.png')}}" alt=""></a>
                     </div>
                     <!-- /logo -->
 
@@ -55,9 +55,9 @@
                 <!-- nav -->
                 <div class="section-row">
                     <ul class="nav-aside-menu">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="{{ route('about') }}">About Us</a></li>
-                        <li><a href="#">Contacts</a></li>
+                        <li><a href="{{ route('contact') }}">Contacts</a></li>
                     </ul>
                 </div>
                 <!-- /nav -->
@@ -97,7 +97,7 @@
                 <div class="col-md-5">
                     <div class="footer-widget">
                         <div class="footer-logo">
-                            <a href="index.html" class="logo"><img src="{{asset('front/img/logo.png')}}" alt=""></a>
+                            <a href="/" class="logo"><img src="{{asset('front/img/logo.png')}}" alt=""></a>
                         </div>
                         <ul class="footer-nav">
                             <li><a href="#">Privacy Policy</a></li>
